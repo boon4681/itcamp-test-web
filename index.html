@@ -1,0 +1,898 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Passwich Thongruang</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400&display=swap');
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .box {
+            outline: none !important;
+            width: 100%;
+            padding: 15px;
+            border: 2px black solid;
+            border-radius: 5px;
+            color: #696969;
+            opacity: 1;
+            box-shadow: 3px 2px 0 1px #000;
+            background-color: #fff;
+            transition: .15s;
+        }
+
+        .box.low {
+            padding: 8px 15px;
+        }
+
+        .main {
+            position: relative;
+            max-width: 400px;
+            background-color: white;
+            border: 2px black solid;
+            box-shadow: 0px 20px 0 0px black;
+            border-radius: 14px;
+        }
+
+        .main img {
+            width: 100%;
+        }
+
+        .main .img {
+            width: 400px;
+            height: 400px;
+            left: -20px;
+        }
+
+        .me\@name {
+            position: absolute;
+            margin: auto 0;
+            line-height: 50px;
+            padding: 15px;
+            font-size: 50px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .me\@nickname {
+            position: absolute;
+            color: #27282a;
+            top: 20px;
+            right: -75px;
+            margin: auto 0;
+            line-height: 50px;
+            padding: 15px;
+            font-size: 50px;
+            font-weight: 300;
+            font-family: 'Noto Sans Thai', sans-serif;
+            transform: rotate(90deg);
+        }
+
+        .me\@nickname .nickname {
+            width: 60px;
+            transform: rotate(-90deg);
+        }
+
+        .me\@main {
+            --dim: url("image/me@main.png");
+        }
+
+        .me\@main::before,
+        .me\@main::before {
+            --dim: url("image/me@main.png");
+        }
+
+        .social {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            max-width: 400px;
+            margin-top: 50px;
+        }
+
+        .social>div {
+            position: relative;
+            max-width: 140px;
+            width: 57px;
+            height: 35px;
+            transition: 0.5s all;
+        }
+
+        .social>div {
+            padding: 0 10px;
+            border-right: 2px solid black;
+        }
+
+        .social>div:hover {
+            width: 100%;
+        }
+
+        .social>div:hover>.btn-icon {
+            width: 100%;
+        }
+
+        .social>div:first-child {
+            padding-left: 0px;
+        }
+
+        .social>div:last-child {
+            border-right: none;
+        }
+
+        .btn-icon {
+            display: flex;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            color: black;
+            font-size: 17px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: 0.25s all;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-icon:hover {
+            color: #404144;
+        }
+
+        .btn-icon .ico {
+            width: 35px;
+            height: 35px;
+            margin-right: 5px;
+        }
+
+        .sun {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: -50px;
+            width: 160px;
+            height: 160px;
+            border: 3px black dashed;
+            border-radius: 50%;
+        }
+
+        .moon {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: -50px;
+            width: 120px;
+            height: 120px;
+            border: 3px black dashed;
+            border-radius: 50%;
+        }
+
+        .moon img {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border: 3px black solid;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+
+        .moon .moon\@text {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+            color: black;
+        }
+
+        .moon .moon\@text .text {
+            position: absolute;
+            top: -10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .sun img {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border: 3px black solid;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+
+        .sun .sun\@text {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 160px;
+            height: 160px;
+            color: black;
+        }
+
+        .sun .sun\@text .text {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            top: -10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .daylight {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            height: 700px;
+        }
+
+        .daylight .cycle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border: 2px black solid;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .divide {
+            width: 100%;
+            border-top: 6px black dashed;
+            border-radius: 20px;
+        }
+
+        .glitch {
+            position: relative
+        }
+
+        .glitch {
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: var(--dim);
+        }
+
+        .glitch:before,
+        .glitch:after {
+            content: "";
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            position: absolute;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: var(--dim);
+            opacity: 0.5;
+            /* background-color: black; */
+        }
+
+        .glitch:before {
+            clip: rect(44px, 450px, 56px, 0);
+            filter: brightness(60%);
+            animation: glitch-anim 1s infinite linear alternate-reverse
+        }
+
+        .glitch:after {
+            left: -2px;
+            filter: saturate(150%);
+            animation: glitch-anim2 1.5s infinite linear alternate-reverse
+        }
+
+        @-webkit-keyframes glitch-anim {
+            0% {
+                clip: rect(232px, 9999px, 34px, 0);
+                transform: skew(-5.8971428571deg)
+            }
+
+            5% {
+                clip: rect(95px, 9999px, 71px, 0);
+                transform: skew(-2.2285714286deg)
+            }
+
+            10% {
+                clip: rect(16px, 9999px, 423px, 0);
+                transform: skew(-1.0571428571deg)
+            }
+
+            15% {
+                clip: rect(313px, 9999px, 374px, 0);
+                transform: skew(-2.4514285714deg)
+            }
+
+            20% {
+                clip: rect(404px, 9999px, 317px, 0);
+                transform: skew(-.4571428571deg)
+            }
+
+            25% {
+                clip: rect(407px, 9999px, 423px, 0);
+                transform: skew(-.3142857143deg)
+            }
+
+            30% {
+                clip: rect(423px, 9999px, 160px, 0);
+                transform: skew(4.1485714286deg)
+            }
+
+            35% {
+                clip: rect(494px, 9999px, 78px, 0);
+                transform: skew(5.88deg)
+            }
+
+            40% {
+                clip: rect(273px, 9999px, 16px, 0);
+                transform: skew(-3.87deg)
+            }
+
+            45% {
+                clip: rect(112px, 9999px, 204px, 0);
+                transform: skew(-6.16deg)
+            }
+
+            50% {
+                clip: rect(370px, 9999px, 24px, 0);
+                transform: skew(2.67deg)
+            }
+
+            55% {
+                clip: rect(235px, 9999px, 388px, 0);
+                transform: skew(-3.6deg)
+            }
+
+            60% {
+                clip: rect(397px, 9999px, 93px, 0);
+                transform: skew(-.5571428571deg)
+            }
+
+            65% {
+                clip: rect(320px, 9999px, 305px, 0);
+                transform: skew(-1.9057142857deg)
+            }
+
+            70% {
+                clip: rect(222px, 9999px, 254px, 0);
+                transform: skew(7deg)
+            }
+
+            75% {
+                clip: rect(499px, 9999px, 350px, 0);
+                transform: skew(-5.3428571429deg)
+            }
+
+            80% {
+                clip: rect(388px, 9999px, 172px, 0);
+                transform: skew(-.8785714286deg)
+            }
+
+            85% {
+                clip: rect(460px, 9999px, 225px, 0);
+                transform: skew(-.2057142857deg)
+            }
+
+            90% {
+                clip: rect(68px, 9999px, 370px, 0);
+                transform: skew(.64deg)
+            }
+
+            95% {
+                clip: rect(491px, 9999px, 175px, 0);
+                transform: skew(-.6785714286deg)
+            }
+
+            to {
+                clip: rect(27px, 9999px, 278px, 0);
+                transform: skew(.4571428571deg)
+            }
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(232px, 9999px, 34px, 0);
+                transform: skew(-5.8971428571deg)
+            }
+
+            5% {
+                clip: rect(95px, 9999px, 71px, 0);
+                transform: skew(-2.2285714286deg)
+            }
+
+            10% {
+                clip: rect(16px, 9999px, 423px, 0);
+                transform: skew(-1.0571428571deg)
+            }
+
+            15% {
+                clip: rect(313px, 9999px, 374px, 0);
+                transform: skew(-2.4514285714deg)
+            }
+
+            20% {
+                clip: rect(404px, 9999px, 317px, 0);
+                transform: skew(-.4571428571deg)
+            }
+
+            25% {
+                clip: rect(407px, 9999px, 423px, 0);
+                transform: skew(-.3142857143deg)
+            }
+
+            30% {
+                clip: rect(423px, 9999px, 160px, 0);
+                transform: skew(4.1485714286deg)
+            }
+
+            35% {
+                clip: rect(494px, 9999px, 78px, 0);
+                transform: skew(5.88deg)
+            }
+
+            40% {
+                clip: rect(273px, 9999px, 16px, 0);
+                transform: skew(-3.87deg)
+            }
+
+            45% {
+                clip: rect(112px, 9999px, 204px, 0);
+                transform: skew(-6.16deg)
+            }
+
+            50% {
+                clip: rect(370px, 9999px, 24px, 0);
+                transform: skew(2.67deg)
+            }
+
+            55% {
+                clip: rect(235px, 9999px, 388px, 0);
+                transform: skew(-3.6deg)
+            }
+
+            60% {
+                clip: rect(397px, 9999px, 93px, 0);
+                transform: skew(-.5571428571deg)
+            }
+
+            65% {
+                clip: rect(320px, 9999px, 305px, 0);
+                transform: skew(-1.9057142857deg)
+            }
+
+            70% {
+                clip: rect(222px, 9999px, 254px, 0);
+                transform: skew(7deg)
+            }
+
+            75% {
+                clip: rect(499px, 9999px, 350px, 0);
+                transform: skew(-5.3428571429deg)
+            }
+
+            80% {
+                clip: rect(388px, 9999px, 172px, 0);
+                transform: skew(-.8785714286deg)
+            }
+
+            85% {
+                clip: rect(460px, 9999px, 225px, 0);
+                transform: skew(-.2057142857deg)
+            }
+
+            90% {
+                clip: rect(68px, 9999px, 370px, 0);
+                transform: skew(.64deg)
+            }
+
+            95% {
+                clip: rect(491px, 9999px, 175px, 0);
+                transform: skew(-.6785714286deg)
+            }
+
+            to {
+                clip: rect(27px, 9999px, 278px, 0);
+                transform: skew(.4571428571deg)
+            }
+        }
+
+        @-webkit-keyframes glitch-anim2 {
+            0% {
+                clip: rect(227px, 9999px, 185px, 0);
+                transform: skew(-5.1deg)
+            }
+
+            5% {
+                clip: rect(337px, 9999px, 424px, 0);
+                transform: skew(.9257142857deg)
+            }
+
+            10% {
+                clip: rect(430px, 9999px, 196px, 0);
+                transform: skew(-.12deg)
+            }
+
+            15% {
+                clip: rect(415px, 9999px, 436px, 0);
+                transform: skew(-4.7142857143deg)
+            }
+
+            20% {
+                clip: rect(211px, 9999px, 113px, 0);
+                transform: skew(2.4428571429deg)
+            }
+
+            25% {
+                clip: rect(96px, 9999px, 343px, 0);
+                transform: skew(.1714285714deg)
+            }
+
+            30% {
+                clip: rect(342px, 9999px, 450px, 0);
+                transform: skew(-.4114285714deg)
+            }
+
+            35% {
+                clip: rect(267px, 9999px, 322px, 0);
+                transform: skew(.2642857143deg)
+            }
+
+            40% {
+                clip: rect(402px, 9999px, 71px, 0);
+                transform: skew(6.24deg)
+            }
+
+            45% {
+                clip: rect(329px, 9999px, 67px, 0);
+                transform: skew(.6428571429deg)
+            }
+
+            50% {
+                clip: rect(243px, 9999px, 166px, 0);
+                transform: skew(.4028571429deg)
+            }
+
+            55% {
+                clip: rect(446px, 9999px, 405px, 0);
+                transform: skew(-.7542857143deg)
+            }
+
+            60% {
+                clip: rect(389px, 9999px, 117px, 0);
+                transform: skew(1.5142857143deg)
+            }
+
+            65% {
+                clip: rect(113px, 9999px, 3px, 0);
+                transform: skew(6.09deg)
+            }
+
+            70% {
+                clip: rect(263px, 9999px, 455px, 0);
+                transform: skew(.3142857143deg)
+            }
+
+            75% {
+                clip: rect(358px, 9999px, 286px, 0);
+                transform: skew(3.9deg)
+            }
+
+            80% {
+                clip: rect(6px, 9999px, 453px, 0);
+                transform: skew(.92deg)
+            }
+
+            85% {
+                clip: rect(78px, 9999px, 89px, 0);
+                transform: skew(-.26deg)
+            }
+
+            90% {
+                clip: rect(131px, 9999px, 393px, 0);
+                transform: skew(-.3142857143deg)
+            }
+
+            95% {
+                clip: rect(243px, 9999px, 332px, 0);
+                transform: skew(-.6442857143deg)
+            }
+
+            to {
+                clip: rect(313px, 9999px, 18px, 0);
+                transform: skew(1.32deg)
+            }
+        }
+
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(227px, 9999px, 185px, 0);
+                transform: skew(-5.1deg)
+            }
+
+            5% {
+                clip: rect(337px, 9999px, 424px, 0);
+                transform: skew(.9257142857deg)
+            }
+
+            10% {
+                clip: rect(430px, 9999px, 196px, 0);
+                transform: skew(-.12deg)
+            }
+
+            15% {
+                clip: rect(415px, 9999px, 436px, 0);
+                transform: skew(-4.7142857143deg)
+            }
+
+            20% {
+                clip: rect(211px, 9999px, 113px, 0);
+                transform: skew(2.4428571429deg)
+            }
+
+            25% {
+                clip: rect(96px, 9999px, 343px, 0);
+                transform: skew(.1714285714deg)
+            }
+
+            30% {
+                clip: rect(342px, 9999px, 450px, 0);
+                transform: skew(-.4114285714deg)
+            }
+
+            35% {
+                clip: rect(267px, 9999px, 322px, 0);
+                transform: skew(.2642857143deg)
+            }
+
+            40% {
+                clip: rect(402px, 9999px, 71px, 0);
+                transform: skew(6.24deg)
+            }
+
+            45% {
+                clip: rect(329px, 9999px, 67px, 0);
+                transform: skew(.6428571429deg)
+            }
+
+            50% {
+                clip: rect(243px, 9999px, 166px, 0);
+                transform: skew(.4028571429deg)
+            }
+
+            55% {
+                clip: rect(446px, 9999px, 405px, 0);
+                transform: skew(-.7542857143deg)
+            }
+
+            60% {
+                clip: rect(389px, 9999px, 117px, 0);
+                transform: skew(1.5142857143deg)
+            }
+
+            65% {
+                clip: rect(113px, 9999px, 3px, 0);
+                transform: skew(6.09deg)
+            }
+
+            70% {
+                clip: rect(263px, 9999px, 455px, 0);
+                transform: skew(.3142857143deg)
+            }
+
+            75% {
+                clip: rect(358px, 9999px, 286px, 0);
+                transform: skew(3.9deg)
+            }
+
+            80% {
+                clip: rect(6px, 9999px, 453px, 0);
+                transform: skew(.92deg)
+            }
+
+            85% {
+                clip: rect(78px, 9999px, 89px, 0);
+                transform: skew(-.26deg)
+            }
+
+            90% {
+                clip: rect(131px, 9999px, 393px, 0);
+                transform: skew(-.3142857143deg)
+            }
+
+            95% {
+                clip: rect(243px, 9999px, 332px, 0);
+                transform: skew(-.6442857143deg)
+            }
+
+            to {
+                clip: rect(313px, 9999px, 18px, 0);
+                transform: skew(1.32deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="daylight">
+        <div class="cycle">
+            <div class="sun">
+                <div class="sun@text">
+                    <div class="text">sun</div>
+                </div>
+                <img src="image/sun.svg" alt="">
+            </div>
+            <div class="moon">
+                <div class="moon@text">
+                    <div class="text">moon</div>
+                </div>
+                <img src="image/moon.svg" alt="">
+            </div>
+        </div>
+        <div class="divide"></div>
+    </div>
+    <div class="main">
+        <div class="me@name">Passwich Thongruang</div>
+        <div class="me@nickname" style="mix-blend-mode:plus-lighter;">
+            <div>ชื่อเล่น</div>
+            <div class="nickname">บุ๋น</div>
+        </div>
+        <div class="me@nickname" style="color: black;">
+            <div style="opacity:0">ชื่อเล่น</div>
+            <div class="nickname">บุ๋น</div>
+        </div>
+        <div class="glitch img me@main"></div>
+        <div class="social box low">
+            <div>
+                <a class="btn-icon" href="https://github.com/boon4681" rel="noopener noreferrer" target="_blank"
+                    role="none">
+                    <div>
+                        <icon url="image/github.svg"></icon>
+                    </div>
+                    boon4681
+                </a>
+            </div>
+            <div>
+                <a class="btn-icon" href="https://twitter.com/boon4681" rel="noopener noreferrer" target="_blank"
+                    role="none">
+                    <div>
+                        <icon url="image/twitter.svg"></icon>
+                    </div>
+                    boon4681
+                </a>
+            </div>
+            <div>
+                <a class="btn-icon" href="https://www.facebook.com/boon4681" rel="noopener noreferrer" target="_blank"
+                    role="none">
+                    <div>
+                        <icon url="image/facebook.svg"></icon>
+                    </div>
+                    boon4681
+                </a>
+            </div>
+            <div>
+                <a class="btn-icon" href="https://www.instagram.com/boon4681" rel="noopener noreferrer" target="_blank"
+                    role="none">
+                    <div>
+                        <icon url="image/instagram.svg"></icon>
+                    </div>
+                    boon4681
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        (async () => {
+            const icon = [...document.querySelectorAll('icon').values()]
+            const get = async (link) => await fetch(link).then(a => {
+                if (a.status === 200) return a.text()
+                throw new HttpError(a)
+            })
+            const loadAll = async () => await Promise.all(icon.map(a => a.getAttribute('url')).map(a => get(a)))
+            const icons = (await loadAll()).map(a => a.replace(/^<svg/, '<svg class="ico"'))
+            for (const i in icons) {
+                icon[i].outerHTML = icons[i]
+            }
+        })()
+    </script>
+    <script>
+        const scale = () => {
+            const width = screen.width < 800 ? 800 : screen.width
+            const scale = screen.width / width
+            const meta = document.querySelector('meta[name=viewport]') || document.createElement('meta')
+            meta.name = "viewport"
+            meta.content = `width=${screen.width < 800 ? width : 'device-width'}, initial-scale=${scale}, maximum-scale=${scale}, minimum-scale=${scale}, user-scalable=yes`
+            return meta
+        }
+        window.onresize = scale
+        document.head.append(scale())
+    </script>
+    <script>
+        const cycle = document.querySelector('div.cycle')
+        const sun = document.querySelector('div.sun')
+        const sunText = document.querySelector('div.sun\\@text')
+        const sunTextText = document.querySelector('div.sun\\@text>.text')
+        const moon = document.querySelector('div.moon')
+        const moonText = document.querySelector('div.moon\\@text')
+        const moonTextText = document.querySelector('div.moon\\@text>.text')
+        let cycleMoved = 0
+        const cycleMove = () => {
+            cycleMoved += 0.2
+            cycleMoved %= 360
+            cycle.style.transform = `rotate(${cycleMoved}deg)`
+            sun.style.transform = `rotate(${cycleMoved * 2}deg)`
+            sunText.style.transform = `rotate(${cycleMoved}deg)`
+            sunTextText.style.transform = `rotate(${-cycleMoved * 4}deg)`
+            moon.style.transform = `rotate(${-cycleMoved * 2}deg)`
+            moonText.style.transform = `rotate(${-cycleMoved}deg)`
+            moonTextText.style.transform = `rotate(${cycleMoved * 2}deg)`
+
+            window.requestAnimationFrame(cycleMove)
+        }
+        window.requestAnimationFrame(cycleMove)
+    </script>
+    <script>
+            /* boon4681 hot reload 
+            -- this script purpose for development only
+            */
+            (async () => {
+                let crash = false;
+                class HttpError extends Error {
+                    constructor(response) {
+                        super(`${response.status} for ${response.url}`);
+                        this.name = 'HttpError';
+                        this.response = response;
+                    }
+                }
+                const resource_urls = [...document.querySelectorAll('link').values()].map(a => a.href).filter(a => a.startsWith(window.location.origin)).concat([window.location.origin])
+                const get = async (link) => await fetch(link).then(a => {
+                    if (a.status === 200) return a.text()
+                    throw new HttpError(a)
+                })
+                const loadAll = async () => await Promise.all(resource_urls.map(a => get(a))).catch(a => {
+                    const crash = document.querySelector('boon4681-hot-reload') || document.createElement('boon4681-hot-reload')
+                    crash.innerHTML = `<style>boon4681-hot-reload{font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}.hot-reload{position:fixed;width:100%;height:100%;top:0;left:0;display:flex;justify-content:center;padding:30px;background-color:#020304c4}.hot-reload .window{position:relative;font-weight:700;color:#fff;max-width:720px;width:100%;padding:50px 50px 20px;background-color:#151516;border-radius:11px;box-shadow:#1c212478 0 2px 20px 0}.hot-reload .window .top{position:absolute;top:0;left:0;width:100%;height:30px;border-radius:10px 10px 0 0;background-color:#212122}.hot-reload .window pre{color:#f35c5c}.hot-reload .window .flex{display:flex;margin-top:40px;padding:10px 0;border-top:1px dashed}.hot-reload .window .reload{font-weight:400;padding:12px 30px;border-radius:10px;background-color:#3f51b5;transition:.25s cubic-bezier(1, .16, .02, 1.36);user-select:none;cursor:pointer}.hot-reload .window .reload:hover{background-color:#485bc7}</style><div class="hot-reload"><div><div class="window"><div class="top"></div><div>Error:</div><pre>${a.toString().split("\n").map(a => '    ' + a).join('\n')}</pre><div class="flex"><div class="reload" onclick="window.location.reload()">reload</div></div></div></div></div>`
+                    document.body.appendChild(crash)
+                })
+                const cached = await loadAll()
+                const reload = async () => {
+                    const content = await loadAll()
+                    crash = !content
+                    if (!crash) if (cached.toString() !== content.toString()) {
+                        window.location.reload()
+                    }
+                    setTimeout(async () => {
+                        if (!crash) await reload()
+                    }, 500)
+                }
+                await reload()
+            })()
+    </script>
+</body>
+
+</html>

@@ -869,7 +869,7 @@
                         this.response = response;
                     }
                 }
-                const resource_urls = [...document.querySelectorAll('link').values()].map(a => a.href).filter(a => a.startsWith(window.location.origin)).concat([window.location.origin])
+                const resource_urls = [...document.querySelectorAll('link').values()].map(a => a.href).filter(a => a.startsWith(window.location.origin)).concat([window.location.toString()])
                 const get = async (link) => await fetch(link).then(a => {
                     if (a.status === 200) return a.text()
                     throw new HttpError(a)
